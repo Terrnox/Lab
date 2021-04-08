@@ -231,3 +231,34 @@ DB1=np.delete(B,5)
 D=np.delete(DB1,0)
 print(D)
 
+#Punkt 6.7
+for r in range (len(D)):
+    if(D[r]==4):
+        D[r]=0
+print(D)
+
+#Punkt 6.8
+wmax = max(C)
+wmin = min(C)
+for i in range (0,6):
+    if(C[i]==wmax):
+        z1 = i
+    elif(C[i]==wmin):
+        z2 = i
+E = np.delete(C,[z1,z2])
+print(E)
+
+#Punkt 6.9
+print(A)
+K = np.zeros((6,1))
+Kmax = np.zeros((5,1))
+Kmin = np.zeros((5,1))
+for i in range (0,5):
+    for j in range (0,6):
+        K[j] = A[i,j]
+        Kmax[i]=max(K)
+        Kmin[i]=min(K)
+
+maxe = max(Kmax)
+mine = min(Kmin)
+if(maxe and mine)
