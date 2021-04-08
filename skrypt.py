@@ -202,18 +202,32 @@ print(A)
 
 #Punkt 6.4
 
-PB = np.zeros((5,1))
+PB = np.zeros((6,1))
+B = np.zeros((6,1))
+for i in range (0,5):
+    for j in range (0,6):
+        if(i == 3):
+           PB[j] = A[i,j]
+print(PB)
 
 for i in range (0,5):
     for j in range (0,6):
-        if(j == 3):
-            PB[i] = A[i,j]
-            
-print(PB) 
-for i in range (0,5):
-    for j in range (0,6):
-        if(j == 1):
-            A[i,j] = A[i,j] + PB[i]          
-print(A)
+       if(i == 1):
+            B[j] = A[i,j] + PB[j]          
+print(np.transpose(B))
 
 #Punkt 6.5
+K = np.zeros((5,1))
+C = np.zeros((6,1))
+AT = np.transpose(A)
+for i in range (0,6):
+    for j in range (0,5):
+        K[j] = AT[i,j]
+        C[i] = max(K)
+print(C)
+
+#Punkt 6.6
+DB1=np.delete(B,5)
+D=np.delete(DB1,0)
+print(D)
+
