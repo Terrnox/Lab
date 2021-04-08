@@ -186,12 +186,34 @@ plt.show()
 
 #Punkt 6.3
 
-A1 = np.arange(1,6)
-A2 = np.arange(-5,0)*(-1)
+A1 = np.array([np.arange(1,6)])
+A2 = np.array([np.arange(-5,0)*(-1)])
 A3 = np.zeros((2,2))
 A4 = np.ones((2,3))*2
-A5 = np.ones((6,1))*10
+A5 = np.ones((5,1))*10
 A6 = np.array([0, 0, -90, -80, -70])
 
+A12 = np.vstack((A1,A2))
+A34 = np.hstack((A3,A4))
+A14 = np.vstack((A12,A34))
+A146 = np.vstack((A14,A6))
+A = np.hstack((A146,A5))
+print(A)
 
+#Punkt 6.4
 
+PB = np.zeros((5,1))
+
+for i in range (0,5):
+    for j in range (0,6):
+        if(j == 3):
+            PB[i] = A[i,j]
+            
+print(PB) 
+for i in range (0,5):
+    for j in range (0,6):
+        if(j == 1):
+            A[i,j] = A[i,j] + PB[i]          
+print(A)
+
+#Punkt 6.5
