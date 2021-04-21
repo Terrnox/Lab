@@ -200,65 +200,143 @@ A146 = np.vstack((A14,A6))
 A = np.hstack((A146,A5))
 print(A)
 
+import numpy as np
+import matplotlib.pyplot as plt
+import funzad15
+
+
 #Punkt 6.4
+print("\n#Zadanie 4\n")
 
-PB = np.zeros((6,1))
-B = np.zeros((6,1))
-for i in range (0,5):
-    for j in range (0,6):
-        if(i == 3):
-           PB[j] = A[i,j]
-print(PB)
+B = A[1, :] + A[3, :]
+print(B)
 
-for i in range (0,5):
-    for j in range (0,6):
-       if(i == 1):
-            B[j] = A[i,j] + PB[j]          
-print(np.transpose(B))
+# Zadanie 5
+print("\n#Zadanie 5\n")
 
-#Punkt 6.5
-K = np.zeros((5,1))
-C = np.zeros((6,1))
-AT = np.transpose(A)
-for i in range (0,6):
-    for j in range (0,5):
-        K[j] = AT[i,j]
-        C[i] = max(K)
+C = np.array([])
+for i in range(np.shape(A)[1]):
+    C = np.append(C, max(A[:, i]))
 print(C)
 
-#Punkt 6.6
-DB1=np.delete(B,5)
-D=np.delete(DB1,0)
+# Zadanie 6
+print("\n#Zadanie 6\n")
+D = np.delete(B, [0, 5])
 print(D)
 
-#Punkt 6.7
-for r in range (len(D)):
-    if(D[r]==4):
-        D[r]=0
+# Zadanie 7
+print("\n#Zadanie 7\n")
+D[D == 4] = 0
 print(D)
 
-#Punkt 6.8
-wmax = max(C)
-wmin = min(C)
-for i in range (0,6):
-    if(C[i]==wmax):
-        z1 = i
-    elif(C[i]==wmin):
-        z2 = i
-E = np.delete(C,[z1,z2])
+# Zadanie 8
+print("\n#Zadanie 8\n")
+E = C[C > min(C)]
+E = E[E < max(E)]
 print(E)
 
-#Punkt 6.9
-print(A)
-K = np.zeros((6,1))
-Kmax = np.zeros((5,1))
-Kmin = np.zeros((5,1))
-for i in range (0,5):
-    for j in range (0,6):
-        K[j] = A[i,j]
-        Kmax[i]=max(K)
-        Kmin[i]=min(K)
+# Zadanie 9
+print("\n#Zadanie 9\n")
+j = np.array([])
+for i in range(np.shape(A)[0]):
+    if np.isin(np.max(A), A[i, :]) and np.isin(np.min(A), A[i, :]):
+        print(A[i, :])
 
-maxe = max(Kmax)
-mine = min(Kmin)
-if(maxe and mine)
+# Zadanie 10
+print("\n#Zadanie 10\n")
+print("Mnożenie tablicowe: ")
+print(D * E)
+print("Mnożenie wektorowe: ")
+print(D @ E)
+
+# Zadanie 11
+print("\n#Zadanie 11\n")
+
+
+def fun11(n):
+    matrix = np.random.randint(0, 11, [n, n])
+    return matrix, np.trace(matrix)
+
+
+print(fun11(3))
+
+# Zadanie 12
+print("\n#Zadanie 12\n")
+
+
+def fun12(matrix):
+    size = np.shape(matrix)
+    matrix = matrix * (1 - np.eye(size[0], size[0]))
+    matrix = matrix * (1 - np.fliplr(np.eye(size[0], size[0])))
+    return matrix
+
+
+tempMatrix = np.array([[1, 2, 3, 4],
+                       [5, 6, 7, 8],
+                       [9, 150, 11, 12],
+                       [13, 14, 15, 16]])
+
+print(fun12(tempMatrix))
+
+# Zadanie 13
+print("\n#Zadanie 13\n")
+
+
+def fun13(matrix):
+    s = 0
+    size = np.shape(matrix)
+    for i in range(size[0]):
+        if i % 2 == 1:
+            s = s + np.sum(matrix[i, :])
+    return s
+
+
+print(fun13(tempMatrix))
+
+# Zadanie 14
+print("\n#Zadanie 14\n")
+y = lambda x: np.cos(2 * x)
+x_points = np.linspace(-10, 10, 201)
+plt.plot(x_points, y(x_points), color='red', dashes=[2, 2])
+# plt.show()
+
+# Zadanie 15
+print("\n#Zadanie 15\n")
+arr = np.array([])
+for i in x_points:
+    arr = np.append(arr, funzad15.y2(i))
+
+plt.plot(x_points, arr, '+g')
+# plt.show()
+
+# Zadanie 16
+print("\n#Zadanie 16\n")
+y16 = lambda x: np.sin(x) if x<0 else np.sqrt(x)
+print(y16(-np.pi))
+print(y16(9))
+
+# Zadanie 17
+print("\n#Zadanie 17\n")
+plt.plot(x_points, 3 * y(x_points) + arr, '*b')
+plt.show()
+
+# Zadanie 18
+print("\n#Zadanie 18\n")
+matrix = np.array([[10, 5, 1, 7],
+                   [10, 9, 5, 5],
+                   [1, 6, 7, 3],
+                   [10, 0, 1, 5]])
+right_matrix = np.array([[34],
+                         [44],
+                         [25],
+                         [27]])
+x_matrix = np.linalg.solve(matrix, right_matrix)
+print(x_matrix)
+
+
+# Zadanie 19
+print("\n#Zadanie 19\n")
+x = np.linspace(0, 2 * np.pi, 1000000)
+y = np.sin(x)
+integral = np.sum(2 * np.pi / 1000000 * y)
+print(integral)
